@@ -1,0 +1,28 @@
+1. How many cores/processors are on your computer?
+8 cores
+
+2. Sequential Run Times (running sequential.cpp):
+a. words_374.txt: 0.104 seconds
+b. words_9330.txt: 11.288 seconds
+c. words_18660.txt:  40.551 seconds
+d. words_31100.txt: 107.979 seconds
+e. words_466493.txt: Optional - Did not attempt to run
+
+3. Parallel Run Times (running parallel.cpp with 4 threads):
+a. words_374.txt: 0.0457309 seconds
+b. words_9330.txt: 3.38581 seconds
+c. words_18660.txt: 11.7949 seconds
+d. words_31100.txt: 30.7272 seconds
+e. words_466493.txt: 6282.7802 seconds
+
+4. Parallel Run Time with 500 threads (words_18660.txt):
+85.2876 seconds
+
+5. Parallel Run Time with 2 threads (words_18660.txt):
+ 15.056 seconds
+
+6. What was surprising about your results? Was there anything that happened that you didn't expect?
+When I used 500 threads and 2 threads the runtime went up. This is likely due to the overhead of managing the threads taking up more time than the actual sorting.
+
+7. The sample output was created with a computer that has 8 cores. Did you get similar running times as the sample output? Why or why not?
+My data was similar to the sample outputs because my computer also has 8 cores. The runtimes weren't identical but definitely correlated.
