@@ -21,4 +21,4 @@ void destroyCourse(Course* myCourse);
 void printCourse(Course* myCourse);
 
 #endif
-//comment
+//comment test
