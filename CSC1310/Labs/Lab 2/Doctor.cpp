@@ -1,3 +1,10 @@
+/*******************************************************************
+	Title: Doctor.cpp
+	Author:	Griffin Sutton, Bruce Myers
+	Date: September 2, 2026
+	Purpose: Defining functions for the Doctor class
+*******************************************************************/
+
 #include "Doctor.h"
 #include "Treatment.h"
 #include "Patient.h"

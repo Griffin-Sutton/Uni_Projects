@@ -1,3 +1,10 @@
+/*******************************************************************
+	Title: Treatment.h
+	Author:	Griffin Sutton, Bruce Myers
+	Date: September 2, 2026
+	Purpose: Defining data and public functions for the Treatment class
+*******************************************************************/
+
 #ifndef TREATMENT_H
 #define TREATMENT_H
 using namespace std;

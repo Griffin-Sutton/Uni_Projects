@@ -1,3 +1,10 @@
+/*******************************************************************
+	Title: Patient.h
+	Author:	Griffin Sutton, Bruce Myers
+	Date: September 2, 2026
+	Purpose: Defining data and public functions for the Patient class
+*******************************************************************/
+
 #ifndef PATIENT_H
 #define PATIENT_H
 

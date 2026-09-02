@@ -1,3 +1,10 @@
+/*******************************************************************
+	Title: Patient.cpp
+	Author:	Griffin Sutton, Bruce Myers
+	Date: September 2, 2026
+	Purpose: Defining functions for the Patient class
+*******************************************************************/
+
 #include "Patient.h"
 #include "Treatment.h"
 #include "Doctor.h"

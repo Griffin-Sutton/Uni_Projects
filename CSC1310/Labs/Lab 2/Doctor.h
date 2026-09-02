@@ -1,3 +1,10 @@
+/*******************************************************************
+	Title: Doctor.h
+	Author:	Griffin Sutton, Bruce Myers
+	Date: September 2, 2026
+	Purpose: Defining data and public functions for the Doctor class
+*******************************************************************/
+
 #ifndef DOCTOR_H
 #define DOCTOR_H
 #include <string>
