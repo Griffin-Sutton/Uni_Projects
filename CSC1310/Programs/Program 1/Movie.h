@@ -1,3 +1,11 @@
+/*********************************************************************
+	Filename:	Movie.h
+	Author:		Griffin Sutton
+	Date:		September 8th, 2026
+	Purpose:	Header file for the Movie Class prototype
+	
+**********************************************************************/
+
 #ifndef MOVIE_H
 #define MOVIE_H
 

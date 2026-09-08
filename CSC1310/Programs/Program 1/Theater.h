@@ -1,6 +1,16 @@
+/*********************************************************************
+	Filename:	Theater.h
+	Author:		Griffin Sutton
+	Date:		September 8th, 2026
+	Purpose:	Header file for the Theater Class prototype
+	
+**********************************************************************/
+
 #ifndef THEATER_H
 #define THEATER_H
 
+#include "Movie.h"
+#include "Showing.h"
 #include <string>
 using namespace std;
 

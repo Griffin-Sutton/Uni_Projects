@@ -1,3 +1,11 @@
+/*********************************************************************
+	Filename:	Showing.h
+	Author:		Griffin Sutton
+	Date:		September 8th, 2026
+	Purpose:	Header file for the Showing Class prototype
+	
+**********************************************************************/
+
 #ifndef SHOWING_H
 #define SHOWING_H
 

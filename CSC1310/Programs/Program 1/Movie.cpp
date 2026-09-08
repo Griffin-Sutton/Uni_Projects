@@ -1,3 +1,11 @@
+/*********************************************************************
+	Filename:	Movie.cpp
+	Author:		Griffin Sutton
+	Date:		September 8th, 2026
+	Purpose:	function definitions for the Movie class
+	
+**********************************************************************/
+
 #include "Movie.h"
 #include "Showing.h"
 #include "Theater.h"
@@ -60,7 +68,7 @@ class Movie {
         };
 
         void editMovie();
-        
+
         void printMovie();
 
 };

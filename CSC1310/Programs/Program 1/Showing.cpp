@@ -1,3 +1,11 @@
+/*********************************************************************
+	Filename:	Showing.cpp
+	Author:		Griffin Sutton
+	Date:		September 8th, 2026
+	Purpose:	function definitions for the Showing class
+	
+**********************************************************************/
+
 #include "Movie.h"
 #include "Showing.h"
 #include "Theater.h"

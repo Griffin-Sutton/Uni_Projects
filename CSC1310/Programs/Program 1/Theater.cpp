@@ -1,3 +1,11 @@
+/*********************************************************************
+	Filename:	Theater.cpp
+	Author:		Griffin Sutton
+	Date:		September 8th, 2026
+	Purpose:	function definitions for the Theater class
+	
+**********************************************************************/
+
 #include "Movie.h"
 #include "Showing.h"
 #include "Theater.h"
@@ -28,7 +36,7 @@ class Theater{
         };
 
         void addMovie(){
-            
+
         };
 
         void editMovie();
