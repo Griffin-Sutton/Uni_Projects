@@ -7,68 +7,161 @@
 **********************************************************************/
 
 #include "Movie.h"
-#include "Showing.h"
-#include "Theater.h"
-
 #include <string>
 #include <iostream>
 using namespace std;
 
 class Movie {
-    private:
-        string title;
-        int releaseYear;
-        int runtimeMinutes;
-        string rating;
-    public:
-        Movie(){
-            title = "";
-            releaseYear = 0;
-            runtimeMinutes = 0;
-            rating = "Unknown";
-        };
+	private:
+		string title;
+		int releaseYear;
+		int runtimeMinutes;
+		string rating;
+	public:
+		// Default constructor
+		Movie() {
+			title = "";
+			releaseYear = 0;
+			runtimeMinutes = 0;
+			rating = "Unknown";
+		}
 
-        Movie(string t, int ry, int rm, string r){
-            title = t;
-            releaseYear = ry;
-            runtimeMinutes = rm;
-            rating = r;
-        };
+		// Parameterized constructor
+		Movie(string t, int ry, int rm, string r) {
+			title = t;
+			releaseYear = ry;
+			runtimeMinutes = rm;
+			rating = r;
+		}
 
-        void setTitle(string st){
-            title = st;
-        };
+		// Set the movie title
+		void setTitle(string st) {
+			title = st;
+		}
 
-        void setReleaseYear(int sry){
-            releaseYear = sry;
-        };
+		// Set the release year
+		void setReleaseYear(int sry) {
+			releaseYear = sry;
+		}
 
-        void setRuntimeMinutes(int srm){
-            runtimeMinutes = srm;
-        };
+		// Set the runtime in minutes
+		void setRuntimeMinutes(int srm) {
+			runtimeMinutes = srm;
+		}
 
-        void setRating(string sr){
-            rating = sr;
-        };
+		// Set the movie rating
+		void setRating(string sr) {
+			rating = sr;
+		}
 
-        string getTitle(){
-            return title;
-        };
+		// Return the movie title
+		string getTitle() {
+			return title;
+		}
 
-        int getReleaseYear(){
-            return releaseYear;
-        };
+		// Return the release year
+		int getReleaseYear() {
+			return releaseYear;
+		}
 
-        int getRuntimeMinutes(){
-            return runtimeMinutes;
-        };
+		// Return the runtime minutes
+		int getRuntimeMinutes() {
+			return runtimeMinutes;
+		}
 
-        string getRating(){
-            return rating;
-        };
+		// Return the rating
+		string getRating() {
+			return rating;
+		}
 
-        void editMovie();
+		// Display edit menu and modify attributes
+		void editMovie() {
+			int pick_edit;
+			int pick_year;
+			int pick_runtime;
+			string pick_title;
+			string pick_rating;
 
-        void printMovie();
+			cout << "\nWhat would you like to edit?\n";
+			cout << "1. Title\n";
+			cout << "2. Release Year\n";
+			cout << "3. Runtime\n";
+			cout << "4. Rating\n";
+			cout << "5. Done Editing\n";
+			cout << "Choose 1-5: ";
+			cin >> pick_edit;
 
+			while (pick_edit <= 0 || pick_edit > 5) {
+				cout << "Oops! You didn't enter a valid number.\n";
+				cout << "What would you like to edit? ";
+				cin.ignore(10000, '\n');
+				cin >> pick_edit;
+			}
+
+			while (pick_edit != 5) {
+				switch (pick_edit) {
+					case 1:
+						cin.ignore();
+						cout << "Current title: " << getTitle() << endl;
+						cout << "New title: ";
+						getline(cin, pick_title);
+						setTitle(pick_title);
+						break;
+					case 2:
+						cout << "Current release year: " << getReleaseYear() << endl;
+						cout << "New release year: ";
+						cin >> pick_year;
+						setReleaseYear(pick_year);
+						break;
+					case 3:
+						cout << "Current runtime: " << getRuntimeMinutes() << endl;
+						cout << "New runtime: ";
+						cin >> pick_runtime;
+						setRuntimeMinutes(pick_runtime);
+						break;
+					case 4:
+						cin.ignore();
+						cout << "Current rating: " << getRating() << endl;
+						cout << "New rating: ";
+						getline(cin, pick_rating);
+						setRating(pick_rating);
+						break;
+				}
+
+				cout << "\nWhat would you like to edit?\n";
+				cout << "1. Title\n";
+				cout << "2. Release Year\n";
+				cout << "3. Runtime\n";
+				cout << "4. Rating\n";
+				cout << "5. Done Editing\n";
+				cout << "Choose 1-5: ";
+				cin >> pick_edit;
+
+				while (pick_edit <= 0 || pick_edit > 5) {
+					cout << "Oops! You didn't enter a valid number.\n";
+					cout << "What would you like to edit? ";
+					cin.ignore(10000, '\n');
+					cin >> pick_edit;
+				}
+			}
+		}
+
+		// Print all movie details
+		void printMovie() {
+			cout << "Title: " << getTitle() << endl;
+
+			if (getReleaseYear() == 0) {
+				cout << "Release Year: Unknown\n";
+			} else {
+				cout << "Release Year: " << getReleaseYear() << endl;
+			}
+
+			if (getRuntimeMinutes() == 0) {
+				cout << "Runtime: Unknown\n";
+			} else {
+				cout << "Runtime: " << getRuntimeMinutes() << " minutes\n";
+			}
+
+			cout << "Rating: " << getRating() << endl;
+		}
 };
