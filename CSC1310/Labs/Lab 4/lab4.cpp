@@ -1,0 +1,274 @@
+/*******************************************************************
+	Title: lab4.cpp
+	Author:	Griffin Sutton
+	Date: September 23, 2026
+	Purpose: Main driver and function declarations for lab 4 - sort algorithms
+*******************************************************************/
+
+#include "lab4.h"
+
+int main() {
+    string* movies;
+    int numMovies = 0;
+    int maxMovies = 20;
+	int choice;
+
+    // initial allocation - array of 20 strings
+    movies = new string[maxMovies];
+
+    // read the file
+    readFromFile(movies, maxMovies, numMovies);
+
+    if (numMovies == 0) {
+        cout << "No movies loaded. Exiting.\n";
+        delete[] movies;
+        return 1;
+    }
+
+	// Execute menu and user's choice until they choose to quit
+    do{
+        cout << "\n================ MENU ================\n";
+        cout << "1) Print movies\n";
+        cout << "2) Bubble sort (A->Z)\n";
+        cout << "3) Selection sort (A->Z)\n";
+        cout << "4) Insertion sort (A->Z)\n";
+        cout << "5) Scramble array (randomize order)\n";
+        cout << "6) Quit\n";
+        cout << "Choose an option (1-6): ";
+        cin >> choice;
+        while (!cin || choice < 1 || choice > 6) {
+            if(!cin)
+                cout << "You didn't enter a number. Please try again: ";
+            else
+                cout << "Invalid choice. Please enter a number between 1 and 6: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> choice;
+        }
+        cout << endl;
+
+        if(choice == 1){// Print
+            printArray(movies, numMovies);
+        }
+        else if(choice == 2){ // Bubble sort with timing
+            cout << "I am going to bubble sort the array of " << numMovies << " movies\n";
+            auto t0 = steady_clock::now();
+            //call bubble sort
+            bubbleSort(movies, numMovies);
+            auto t1 = steady_clock::now();
+            auto ms_bubble = duration_cast<milliseconds>(t1 - t0).count();
+            cout << "Bubble sort completed in " << ms_bubble << " ms.\n";
+        }
+        else if (choice == 3){ //selection sort
+            cout << "I am going to selection sort the array of " << numMovies << " movies\n";
+            auto t0 = steady_clock::now();
+            //call selection sort
+            selectionSort(movies, numMovies);
+            auto t1 = steady_clock::now();
+            auto ms_selection = duration_cast<milliseconds>(t1 - t0).count();
+            cout << "selection sort completed in " << ms_selection << "ms.\n";
+        }
+        else if (choice == 4){ //insertion sort
+            cout << "I am going to insertion sort the array of " << numMovies << " movies\n";
+            auto t0 = steady_clock::now();
+            //call selection sort
+            selectionSort(movies, numMovies);
+            auto t1 = steady_clock::now();
+            auto ms_insertion = duration_cast<milliseconds>(t1 - t0).count();
+            cout << "insertion sort completed in " << ms_insertion << "ms.\n";
+        }
+            else if(choice == 5){ // Scramble
+            scramble(movies, numMovies);
+            cout << "Array scrambled.\n";
+        }
+        else // Quit
+            cout << "Goodbye!\n";
+    } while(choice != 6);
+
+    // clean up dynamic memory
+    delete[] movies;
+
+    return 0;
+}
+
+/*
+	Function: bubbleSort
+	Purpose: uses bubble sort to sort an array of movies
+	Parameters:
+		arr - reference to the array pointer to store movie titles
+		size - reference to the maximum size of the array
+	Returns: void
+*/
+void bubbleSort(string *arr, int size){
+    string tempForSwap;
+	bool swapped; //to keep track of whether a swap occurred in the inner loop
+	
+	for(int i=0; i<size-1; i++){
+		swapped = false;
+		for(int j=0; j<size-i-1; j++){ 
+			//swap the two adjacent elements if the one on the 
+			//left is greater than the one on the right
+			if(arr[j] > arr[j+1]) {
+				tempForSwap = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = tempForSwap;
+				swapped = true; //a swap occurred
+			}
+		}
+		//if there were no swaps, then break
+		if(!swapped)
+			break; //prevents unnecessary passes through the array
+	}
+}
+
+/*
+	Function: selectionSort()
+	Purpose: Uses selection sort to sort the array of movies
+	Parameters:
+		arr - reference to the array pointer to store movie titles
+		size - reference to the maximum size of the array
+	Returns: void
+*/
+void selectionSort(string *arr, int size)
+{
+	int minIndex;
+    string minValue;
+	string temp;  //temporary variable for swap
+	
+	for(int i=0; i<size-1; i++){
+		minIndex = i;
+		minValue = arr[i];
+		//find the minimum value in the array iing from i and going through the end of the array
+		for(int j=i+1; j<size; j++) {
+			if(arr[j] < minValue) {
+				minValue = arr[j];
+				minIndex = j;
+			}
+		}
+		//now we have the index of the smallest value so swap
+		temp = arr[minIndex];
+		arr[minIndex] = arr[i];
+		arr[i] = temp;
+	}
+}
+
+/*
+	Function: insertionSort()
+	Purpose: Uses insertion sort to sort the array of movies
+	Parameters:
+		arr - reference to the array pointer to store movie titles
+		size - reference to the maximum size of the array
+	Returns: void
+*/
+void insertionSort(string *arr, int size){
+	string key; //key is the item that we are sorting at the moment
+	int j;  //j is the position of where key should be inserted into the sorted array
+	
+	//i will hold the subscript of the unsorted array
+	for (int i=1; i < size; i++){
+		key = arr[i]; // select the item to be sorted
+		j = i-1; // j is the element to the furthest right of the sorted array
+		// while we haven't gone out of bounds to the left of the array AND 
+		// the current element is still greater than key
+		while (j >= 0 && arr[j] > key){
+			//move elements to the right of the sorted array 
+			//that are greater than the item (key)
+			arr[j+1] = arr[j]; 
+			j = j-1; 
+		}
+		arr[j+1] = key; //place item in final sorted position
+	}
+}
+
+/*
+	Function: printArray()
+	Purpose: Doubles the index count for the current array
+	Parameters:
+		arr - reference to the array pointer to store movie titles
+		size - reference to the maximum size of the array
+	Returns: void
+*/
+void printArray(string* arr, int size){
+    for (int i = 0; i < size; i++){
+        cout << arr[i] << endl;
+    }
+}
+
+/*
+	Function: doubleArray()
+	Purpose: Doubles the index count for the current array
+	Parameters:
+		arr - reference to the array pointer to store movie titles
+		size - reference to the maximum size of the array
+	Returns: int
+*/
+int doubleArray(string*& arr, int size){
+    int newSize;
+
+    if (size == 0){
+        newSize = 1;
+    }
+    else{
+        newSize = size * 2;
+    }
+
+    string *newArr = new string[newSize];
+
+    for (int i = 0; i < size; i++){
+        newArr[i] = arr[i];
+    }
+
+    delete[] arr;
+    arr = newArr;
+    return newSize;
+}
+
+/*
+	Function: readFromFile()
+	Purpose: Reads movie titles from a specified text file into a dynamic array.
+	Parameters:
+		arr - reference to the array pointer to store movie titles
+		maxSize - reference to the maximum size of the array
+		curSize - reference to the current number of movies stored
+	Returns: void
+*/
+void readFromFile(string*& arr, int& maxSize, int& curSize) {
+    ifstream inFile;
+    string filename, movie;
+    cout << "Filename (movies.txt): ";
+    cin >> filename;
+
+    inFile.open(filename);
+    if (inFile.is_open()) {
+        while (getline(inFile, movie)) {
+            if (curSize == maxSize) {
+                maxSize = doubleArray(arr, maxSize);
+            }
+            arr[curSize] = movie;
+            curSize++;
+        }
+        inFile.close();
+        cout << "Loaded " << curSize << " movies from '" << filename << "'.\n";
+    } else {
+        cout << "Unable to open file '" << filename << "'!\n";
+    }
+}
+
+/*
+	Function: scramble()
+	Purpose: Randomly shuffles the elements of the array.
+	Parameters:
+		arr - the array to shuffle
+		size - number of elements in the array
+	Returns: void
+*/
+void scramble(string* arr, int size) {
+	int j;
+    if (size <= 1) 
+        return;
+    srand(static_cast<unsigned int>(time(0)));
+	for (int i = size - 1; i > 0; i--) {
+		j = rand() % (i + 1);
+		swap(arr[i], arr[j]);
+	}
+}
